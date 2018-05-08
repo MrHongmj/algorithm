@@ -6,16 +6,15 @@
         }
         
         for($i = 0; $i < $count; $i++){
-            for($j = $i; $i < $count; $i++){
-                if(!isset($min)){
-                    $min = $list[$j];
-                }
-                if($min > $list[$j]){
-                    $min = $list[$j];
+            $min_key = $i;
+            for($j = $i+1; $j < $count; $j++){
+                if($list[$min_key] > $list[$j]){
+                    $min_key = $j;
                 }
             }
-            $list[$i] = $min;
-            unset($min);
+            $tmp = $list[$i];
+            $list[$i] = $list[$min_key];
+            $list[$min_key] = $tmp;
         }
         return $list;
     }
